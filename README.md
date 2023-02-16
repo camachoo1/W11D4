@@ -230,4 +230,4 @@ entry files.
 
 Commit your setup code!
 
-[http://localhost:3000]: http://localhost:3000# W11D4
+[http://localhost:3000]: http://localhost:3000
