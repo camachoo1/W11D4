@@ -1,82 +1,80 @@
 // Constants
-const ADD_PRODUCT = 'cart/addProduct'
-const REMOVE_PRODUCT = 'cart/removeProduct'
-const INCREMENT_COUNT = 'cart/incrementCount'
-const DECREMENT_COUNT = 'cart/decrementCount'
-const EMPTY_CART = 'cart/emptyCart'
+const ADD_PRODUCT = 'cart/addProduct';
+const REMOVE_PRODUCT = 'cart/removeProduct';
+const INCREMENT_COUNT = 'cart/incrementCount';
+const DECREMENT_COUNT = 'cart/decrementCount';
+const EMPTY_CART = 'cart/emptyCart';
 const SET_NEW_COUNT = 'cart/setCount';
-
-
-
 
 // Actions
 
-export function addProduct(productId) {
+export const addProduct = (productId) => {
   return {
     type: ADD_PRODUCT,
-    productId
-  }
-}
+    productId,
+  };
+};
 
-
-export function removeProduct(productId) {
+export const removeProduct = (productId) => {
   return {
     type: REMOVE_PRODUCT,
-    productId
-  }
-}
+    productId,
+  };
+};
 
-export function incrementCount(productId) {
+export const incrementCount = (productId) => {
   return {
     type: INCREMENT_COUNT,
-    productId
-  }
-}
+    productId,
+  };
+};
 
-export function decrementCount(productId) {
+export const decrementCount = (productId) => {
   return {
     type: DECREMENT_COUNT,
-    productId
-  }
-}
+    productId,
+  };
+};
 
-export function emptyCart() {
+export const emptyCart = () => {
   return {
-    type: EMPTY_CART
-  }
-}
+    type: EMPTY_CART,
+  };
+};
 
-export function setNewCount (productId, count) {
+export const setNewCount = (productId, count) => {
   return {
     type: SET_NEW_COUNT,
     productId,
-    count
-  }
-}
-
+    count,
+  };
+};
 
 // Reducer
 
-
-export default function cartReducer(state = {}, action) {
-  Object.freeze(state)
-  const id = action.productId
-  const nextState = { ...state }
+const cartReducer = (state = {}, action) => {
+  Object.freeze(state);
+  const id = action.productId;
+  const nextState = { ...state };
   switch (action.type) {
     case ADD_PRODUCT:
-      nextState[id] ? nextState[id].count++ : nextState[id] = { id: id, count: 1 }
-      return nextState
+      nextState[id]
+        ? nextState[id].count++
+        : (nextState[id] = { id: id, count: 1 });
+      return nextState;
     case REMOVE_PRODUCT:
-      delete nextState[id]
-      return nextState
+      delete nextState[id];
+      return nextState;
     case INCREMENT_COUNT:
-      nextState[id].count++
-      return nextState
+      nextState[id].count++;
+      return nextState;
     case DECREMENT_COUNT:
-      nextState[id].count > 1 ? nextState[id].count-- : delete nextState[id]
-      return nextState
+      nextState[id].count > 1
+        ? nextState[id].count--
+        : delete nextState[id];
+      return nextState;
     case EMPTY_CART:
-      return {}
+      return {};
     case SET_NEW_COUNT:
       const newCount = action.count;
       nextState[id].count = newCount;
@@ -84,9 +82,9 @@ export default function cartReducer(state = {}, action) {
     default:
       return state;
   }
-}
+};
 
-
+export default cartReducer;
 
 // export default function produceReducer(state = {}, action) {
 //     // console.log(state)

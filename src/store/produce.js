@@ -3,23 +3,23 @@ import produceData from '../mockData/produce.json'
 const POPULATE = 'produce/populateProduce'
 const LIKE_UNLIKE = 'produce/likeUnlikeProduct';
 
-export function populateProduce() {
+export const populateProduce = () => {
   return {
     type: POPULATE,
     produce: produceData
   }
-}
+};
 
-export function likeUnlikeProduct(productId) {
+export const likeUnlikeProduct = productId => {
   return {
     type: LIKE_UNLIKE,
     productId
   }
-}
+};
 
 export const getAllProduce = state => Object.values(state.produce);
 
-export default function produceReducer(state = {}, action) {
+const produceReducer = (state = {}, action) => {
     // console.log(state)
   const id = action.productId
   Object.freeze(state)
@@ -36,4 +36,6 @@ export default function produceReducer(state = {}, action) {
     default:
       return state;
   }
-}
+};
+
+export default produceReducer;
